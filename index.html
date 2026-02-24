@@ -1,121 +1,441 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Наталия Алексеенко — Страховой агент</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+:root {
+  --bg-dark: #0a0e1a;
+  --bg-card: #0f1629;
+  --bg-card-hover: #151d35;
+  --accent-blue: #2563eb;
+  --accent-light: #3b82f6;
+  --accent-cyan: #22d3ee;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border: rgba(37, 99, 235, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0a0e1a, #111a2e);
-  color: white;
+  font-family: 'Montserrat', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
+/* Hero */
 .hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-dark) 100%);
 }
 
-.hero-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 60px;
-  max-width: 1100px;
-  width: 100%;
+.hero h1 {
+  font-size: clamp(36px, 8vw, 56px);
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
 }
 
-.hero-text h1 {
-  font-size: 48px;
-  margin: 0 0 15px 0;
+.hero .subtitle {
+  font-size: clamp(18px, 3vw, 24px);
+  color: var(--accent-cyan);
+  font-weight: 500;
+  margin-bottom: 40px;
+  letter-spacing: 0.05em;
 }
 
-.hero-text p {
-  font-size: 22px;
-  margin-bottom: 30px;
-  color: #4cc9f0;
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.buttons {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
 }
 
-.button {
-  padding: 14px 28px;
-  border-radius: 12px;
-  text-decoration: none;
-  color: white;
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
-  transition: 0.3s;
+.btn-telegram {
+  background: linear-gradient(135deg, #0088cc 0%, #229ED9 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
 }
 
-.button:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
+.btn-telegram:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 136, 204, 0.5);
 }
 
-.hero-photo img {
-  max-width: 380px;
-  width: 100%;
-  border-radius: 20px;
+.btn-call {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-light) 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
 }
 
-/* 📱 Адаптация под телефон */
-@media (max-width: 768px) {
+.btn-call:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
+}
 
-  .hero-container {
-    flex-direction: column;
-    text-align: center;
-  }
+/* Sections */
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
 
-  .hero-text h1 {
-    font-size: 34px;
-  }
+.section-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16px;
+}
 
-  .hero-photo img {
-    max-width: 260px;
-  }
+.section-subtitle {
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 48px;
+  font-size: 18px;
+}
 
-  .buttons {
-    justify-content: center;
-  }
+/* Services */
+.services {
+  background: var(--bg-card);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.service-card {
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(37, 99, 235, 0.2);
+}
+
+.service-card .icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.service-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.service-card p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Advantages */
+.advantages {
+  background: var(--bg-dark);
+}
+
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.advantage-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 28px;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.advantage-item:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.15);
+}
+
+.advantage-num {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.advantage-item h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.advantage-item p {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+/* Contacts */
+.contacts {
+  background: var(--bg-card);
+}
+
+.contacts-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  background: var(--bg-dark);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+  border-color: var(--accent-blue);
+}
+
+.contact-item a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.contact-item a:hover {
+  color: var(--accent-light);
+}
+
+.contact-item .label {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  border-top: 1px solid var(--border);
 }
 </style>
 </head>
-
 <body>
 
-<section class="hero">
-  <div class="hero-container">
+<header class="hero">
+  <h1>Наталия Алексеенко</h1>
+  <p class="subtitle">Страховой агент</p>
+  <div class="hero-buttons">
+    <a href="https://t.me/StrahovkaNatalia_Bot" class="btn btn-telegram">Telegram</a>
+    <a href="tel:+79780208501" class="btn btn-call">Позвонить</a>
+    <p style="margin-top:10px; font-size:14px; color:#94a3b8;">
+        Рабочий телефон: 
+        <a href="tel:+79780208501" style="color:#3b82f6; text-decoration:none;">
+        +7 978 020-85-01
+        </a>
+        </p> </div>
+</header>
 
-    <div class="hero-text">
-      <h1>Наталия Алексеенко</h1>
-      <p>Страховой агент</p>
+<section class="services">
+  <h2 class="section-title">Услуги</h2>
+  <p class="section-subtitle">Подберу оптимальный вариант страховой защиты</p>
 
-      <div class="buttons">
-        <a href="https://t.me/StrahovkaNatalia_Bot" class="button">Telegram</a>
-        <a href="tel:+79780208501" class="button">Позвонить</a>
-      </div>
+  <div class="services-grid">
 
-      <p style="margin-top:25px;font-size:14px;opacity:0.7;">
-        Рабочий телефон: +7 978 020 85 01
-      </p>
-    </div>
+    <a href="https://t.me/StrahovkaNatalia_Bot?start=osago" class="service-card" target="_blank">
+      <div class="icon">🚗</div>
+      <h3>ОСАГО</h3>
+      <p>Обязательная автогражданка для всех водителей</p>
+    </a>
 
-    <div class="hero-photo">
-      <img src="photo.jpg" alt="Наталия Алексеенко">
-    </div>
+    <a href="https://t.me/StrahovkaNatalia_Bot?start=kasko" class="service-card" target="_blank">
+      <div class="icon">🛡️</div>
+      <h3>КАСКО</h3>
+      <p>Добровольное страхование автомобиля</p>
+    </a>
 
-  </div>
+    <a href="https://t.me/StrahovkaNatalia_Bot?start=property" class="service-card" target="_blank">
+      <div class="icon">🏠</div>
+      <h3>Имущество</h3>
+      <p>Защита дома, квартиры и другого имущества</p>
+    </a>
+
+    <a href="https://t.me/StrahovkaNatalia_Bot?start=travel" class="service-card" target="_blank">
+      <div class="icon">✈️</div>
+      <h3>Путешествия</h3>
+      <p>Страховка для поездок за границу</p>
+    </a>
+
+    <a href="https://t.me/StrahovkaNatalia_Bot?start=life" class="service-card" target="_blank">
+      <div class="icon">❤️</div>
+      <h3>Жизнь</h3>
+      <p>Страхование жизни и здоровья</p>
+    </a>
+
+  </div>
 </section>
+<section class="advantages">
+  <h2 class="section-title">Преимущества</h2>
+  <p class="section-subtitle">Почему стоит обратиться ко мне</p>
+  <div class="advantages-grid">
+    <div class="advantage-item">
+      <span class="advantage-num">1</span>
+      <div>
+        <h3>Быстрое оформление</h3>
+        <p>Электронные полисы за считанные минуты без визита в офис</p>
+      </div>
+    </div>
+    <div class="advantage-item">
+      <span class="advantage-num">2</span>
+      <div>
+        <h3>Сравнение цен</h3>
+        <p>Подбираю лучшие предложения от надёжных страховых компаний</p>
+      </div>
+    </div>
+    <div class="advantage-item">
+      <span class="advantage-num">3</span>
+      <div>
+        <h3>Консультация 24/7</h3>
+        <p>Отвечаю на вопросы и помогаю в удобное для вас время</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="lead">
+  <h2 class="section-title">Оставить заявку</h2>
+  <p class="section-subtitle">Напишите в двух словах — я быстро отвечу</p>
+
+  <form class="lead-form" onsubmit="return sendToTelegram(event)">
+    <input name="name" type="text" placeholder="Ваше имя" required />
+    <input name="phone" type="tel" placeholder="Телефон (+7...)" required />
+    <select name="service" required>
+      <option value="" disabled selected>Что нужно застраховать?</option>
+      <option>ОСАГО</option>
+      <option>КАСКО</option>
+      <option>Имущество</option>
+      <option>Путешествия</option>
+      <option>Жизнь/здоровье</option>
+      <option>Другое</option>
+    </select>
+    <textarea name="comment" placeholder="Комментарий (необязательно)" rows="4"></textarea>
+
+    <button type="submit" class="btn">Отправить в Telegram</button>
+    <p class="hint">После нажатия откроется Telegram. Просто нажмите “Отправить”.</p>
+  </form>
+</section>
+
+<script>
+  function sendToTelegram(e) {
+    e.preventDefault();
+    const f = e.target;
+
+    const name = f.name.value.trim();
+    const phone = f.phone.value.trim();
+    const service = f.service.value.trim();
+    const comment = f.comment.value.trim();
+
+    const text =
+      `Заявка с сайта:%0A` +
+      `Имя: ${encodeURIComponent(name)}%0A` +
+      `Телефон: ${encodeURIComponent(phone)}%0A` +
+      `Услуга: ${encodeURIComponent(service)}%0A` +
+      (comment ? `Комментарий: ${encodeURIComponent(comment)}%0A` : ``);
+
+    // Открываем диалог с ботом/аккаунтом и подставляем текст
+    const url = `https://t.me/StrahovkaNatalia_Bot?text=${text}`;
+    window.open(url, "_blank");
+    return false;
+  }
+</script>
+  
+<section class="contacts">
+  <h2 class="section-title">Контакты</h2>
+  <p class="section-subtitle">Свяжитесь удобным способом</p>
+  <div class="contacts-inner">
+    <div class="contacts-list">
+      
+      <div class="contact-item">
+        <span class="label">Telegram:</span>
+        <a href="https://t.me/StrahovkaNatalia_Bot" target="_blank">
+          @StrahovkaNatalia_Bot
+        </a>
+      </div>
+
+      <div class="contact-item">
+        <span class="label">Телефон:</span>
+        <a href="tel:+79780208501">
+          +7 978 020-85-01
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Наталия Алексеенко. Страховой агент.
+</footer>
 
 </body>
 </html>
-
